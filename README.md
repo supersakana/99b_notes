@@ -165,6 +165,40 @@ Primer for TDD which was used to fund Shameless Green
 
 Introduces new requirement (six-pack), how to decide where to start when changing code. Explores Open/Closed, code smells, flocking.
 
+### 3.1 Unearthing Concepts
+
+- The arival of a new requirement tells you two things, onve very specific, the other more general.
+
+- A new requirement tells you exactly how code should change. Code that never changes obviously does not need to be very changable, but the bare is rasied when a new requirement enters and the code must be changable then.
+
+- Requirement: Add a feature that outputs 6-pack when
+
+- Conditionals are the bane of OO, as it is ok for Shameless Green's solution, but to add a new branch would turn the case frorm 4 to 6.
+
+### 3.2 Start with the Open/Closed Principle
+
+- "Open" is short for "Open/Closed" which in turn is short for _"open for extension and closed for modification"_.
+
+- The SOLID Design Principles are listed below...
+
+  1. **Single Responsibility**: The method in a class should bd cohesive around a single purpose.
+
+  2. **Open-Closed**: Objects should be open for extension but closed for modification (do not conflate the process of moving code around during refactoring).
+
+  3. **Liskov Subsitution**: Subclasses should be substitutable for their superclasses.
+
+  4. **Interface Segregation**: Objects should not be forced to depend on methods the do not use.
+
+  5. **Dependency Inversion**: Depend on abstractions, not on concretions.
+
+- SO, the current Bottles class ins _not_ open to the 6-packs requirement because adding new verse variants require editing the conditional.
+
+- To make it open, we need to remove the easiet to fix/best understood code smell.
+
+- If you can identify smells in code, you isolate flaws and correct them one by one
+
+### 3.3 Recognizing Code Smells
+
 ## Chapter 4
 
 Continues the step bu step refactoring. uses flocking rules and stumbles across the need for Liskove Subsitution Principle
