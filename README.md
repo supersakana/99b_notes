@@ -28,7 +28,7 @@ Explores how to decide if code is "good enough", reveals metrics
 
 - **Assignments, Branches, and Conditions (ABC)** : Code assigns values to vars and sends messages. These things add up and can be difficult to understand. Assignments is count of variable assignments. Branches counts function calls or message sends. Conditions counts conditional logic. Flog is used to measure the ABC metric.
 
-## Chapter 2
+## Chapter 2 | Test Driving Shameless Green
 
 Primer for TDD which was used to fund Shameless Green
 
@@ -161,7 +161,7 @@ Primer for TDD which was used to fund Shameless Green
 
 - **Get good at testing!**
 
-## Chapter 3
+## Chapter 3 | Unearthing Concepts
 
 Introduces new requirement (six-pack), how to decide where to start when changing code. Explores Open/Closed, code smells, flocking.
 
@@ -199,9 +199,91 @@ Introduces new requirement (six-pack), how to decide where to start when changin
 
 ### 3.3 Recognizing Code Smells
 
-## Chapter 4
+- Code flaws are also recognized as 'code smell'
 
-Continues the step bu step refactoring. uses flocking rules and stumbles across the need for Liskove Subsitution Principle
+- The easiest way to uncover flaws in code is to list all the flaws you dislike
+
+### 3.4 Identifying the Best Point of Attack
+
+- The current implementation of Shameless Green is not "open" (open for extension, closed for modification) it's currently a case statement and we dont want to add another set of conditionals.
+
+- If unclear on how to make code open, the way forward is to start removing code smells.
+
+- Switch statements smell. And in the current case, it contains many duplicated strings. Duplication is the most straight forward smell so will be tackled first. The current task is to remove the duplication in hope and expectation that the resulting code will be more open to six pack.
+
+### 3.5 Refactoring Systematically
+
+- Refactoring is the process of changing softwear in such a way that does not alter the external behavior of the code, yet imporves the internal structure.
+
+- Adding new requirements should be implemented in 2 steps. First rearrange exisitng code to be open to new requirements. Next write new code to meet requirement.
+
+- NOTE: Safe refactoring relies upon tests.
+
+- Test are the wall at your back that help with refactoring safely.
+
+### 3.6 Following the Flocking Rules.
+
+- The case statement currently has 4 branches that contain a verse template.
+
+- Each variant is merely a verse in the song; in that sense they are all the same!
+
+- Underlying each concrete variant is a generalized verse abstraction. If you could find this abstraction, you could use it to reduce the four branch case statement to a single line of code.
+
+- Flocking Rules...
+
+  1. Select the things that are most alike.
+
+  2. Find the smallest difference between them.
+
+  3. Make the simplest vhange that will remove that difference.
+
+- Changes to code can be subdivided into four distinct steps...
+
+  1. parse the new code
+
+  2. parse and execute it
+
+  3. parse, execute and use its result
+
+  4. delete unused code
+
+- As you're folowing thr flocking rules...
+
+  1. For now, change only one line at a time
+
+  2. Run the tests after every change.
+
+  3. If the tests fail, undo and make a better change.
+
+- Why is it called flocking? The result of a flock in nature is nothing more than a bunch of small decisions making up a larger impression.
+
+### 3.7 Converging on Abstractions
+
+- Differences hold the key to understanding. If two concrete examples represent the same abstraction and contain a difference, that difference must represent a smaller abstraction within the larger one. If you can name the difference, you've identified the smaller abstraction.
+
+- It's commmon to find that hard problems are hard only because the easy ones have not been solved yet.
+
+- Making a slew of simultaneous changes is not refactoring - it's rehacktoring. It would be much easier to make a series of tiny changes and run the tests after each. If the tests fail, you know the exact change that caused the failure.
+
+- The flocking rules concentrate on turning difference into sameness, and thus are useful tools for unearthing abstractions.
+
+## Chapter 4 | Practicing Horizontal Refactoring
+
+Continues the step by step refactoring. uses flocking rules and stumbles across the need for Liskove Subsitution Principle
+
+### 4.1 Replacing Differences with Sameness
+
+- The refactoring rules start by choosing the cases that are most alike.
+
+- Just as we created the `container` method for the verse 2 and else statment to be merged, we can do the same with the 1 verse. By making `container` interpolated on the top line of the verse.
+
+### 4.2 Equivocating About Names
+
+- We added a `pronoun` method that returns "it" or "one" depending on the number of bottles. The way we created it was almost identical to creating our `container` method. By identifying the abstraction between "one" and "it" (pronoun), then interpolating the method in our logic.
+
+### 4.3 Deriving Names From Responsibilities
+
+-
 
 ## Chapter 5
 
